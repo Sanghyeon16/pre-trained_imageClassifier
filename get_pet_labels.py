@@ -45,14 +45,15 @@ def get_pet_labels(image_dir):
     list_of_files = listdir(image_dir)
     results_dic = {}
     for i, name in enumerate(list_of_files):
-        pars_name = name.split('_')
-        tmp_label = ''
-        for w in pars_name:
-            if '.' in w:
-                tmp_label = tmp_label[:-1] # remove last space
-            else:
-                tmp_label += w
-                tmp_label += ' '
-        results_dic[name] = [tmp_label]
+        if not list_of_files[i][0] == '.': # skip files start with '.'
+            pars_name = name.split('_')
+            tmp_label = ''
+            for w in pars_name:
+                if '.' in w:
+                    tmp_label = tmp_label[:-1] # remove last space
+                else:
+                    tmp_label += w
+                    tmp_label += ' '
+            results_dic[name] = [tmp_label]
                
     return results_dic
